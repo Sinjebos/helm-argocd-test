@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: {{ values.namespace }}
+spec:
+  project: default
+  source:
+    repoURL: {{ values.gitRepo }}
+    targetRevision: master
+    path: dev
+    helm:
+      values: |
+        namespace: "my-nginx-example"
+        gitRepo: "githubrepo"
+        port: "80"
+        image: "sinjebos/nginxexample"
+        tag: "1.0"
+  destination: 
+    namespace: {{ values.namespace }}
+    server: https://kubernetes.default.svc
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true

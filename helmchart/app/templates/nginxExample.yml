@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx-app
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: my-nginx-app
+        image: {{ values.image }}:{{ values.tag }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ values.name }}
+spec:
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080

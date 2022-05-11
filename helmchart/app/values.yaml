@@ -1,0 +1,6 @@
+image: "nginxexample"
+tag: "1.0"
+port: "80"
+namespace: "my-nginx-app"
+name: "nginx"
+gitRepo: "git@gitlab.infra.stralfors.se/"
