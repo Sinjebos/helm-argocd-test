@@ -8,11 +8,11 @@ spec:
   source:
     repoURL: {{ values.gitRepo }}
     targetRevision: master
-    path: dev
+    path: ../dev
     helm:
       values: |
         namespace: "my-nginx-example"
-        gitRepo: "githubrepo"
+        gitRepo: "https://github.com/Sinjebos/helm-argocd-test.git"
         port: "80"
         image: "sinjebos/nginxexample"
         tag: "1.0"
