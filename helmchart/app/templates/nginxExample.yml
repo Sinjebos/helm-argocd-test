@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
       - name: my-nginx-app
-        image: {{ values.image }}:{{ values.tag }}
+        image: sinjebos/nginxexample:1.0
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ values.name }}
+  name: my-nginx-app
 spec:
   selector:
     app: nginx
