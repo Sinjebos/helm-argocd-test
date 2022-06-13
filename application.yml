@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Sinjebos/helm-argocd-test.git #"{{- .Values.gitRepo }}"
-    targetRevision: HEAD
+    targetRevision: master
     path: helmchart
     helm:
       values: |
