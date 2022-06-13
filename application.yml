@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Sinjebos/helm-argocd-test.git #"{{- .Values.gitRepo }}"
     targetRevision: HEAD
-    path: .helmchart/app/
+    path: helmchart
     helm:
       values: |
         namespace: "argocd"
