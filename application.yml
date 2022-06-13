@@ -1,23 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx
-  namespace: argocd #{{ Values.namespace }}
+  name: nginx #"{{ .Values.name }}"
+  namespace: argocd #"{{ .Values.namespace }}"
 spec:
   project: default
   source:
-    repoURL: https://github.com/Sinjebos/helm-argocd-test.git #{{ Values.gitRepo }}
+    repoURL: https://github.com/Sinjebos/helm-argocd-test.git #"{{ .Values.gitRepo }}"
     targetRevision: HEAD
     path: helmchart
-    # helm:
-    #   values: |
-    #     namespace: "my-nginx-example"
-    #     gitRepo: "https://github.com/Sinjebos/helm-argocd-test.git"
-    #     port: "80"
-    #     image: "sinjebos/nginxexample"
-    #     tag: "1.0"
+    helm:
+      values: |
+        namespace: "argocd"
+        gitRepo: "https://github.com/Sinjebos/helm-argocd-test.git"
+        port: "80"
+        image: "sinjebos/nginxexample"
+        tag: "1.0"
   destination: 
-    namespace: argocd #{{ Values.namespace }}
+    namespace: argocd # "{{ .Values.namespace }}"
     server: https://kubernetes.default.svc
 
   syncPolicy:
