@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ .Values.name }}"
+  name: nginx #"{{ .Values.name }}"
 spec:
   selector:
     matchLabels:
-      app: "{{ .Values.name }}"
+      app: nginx #"{{ .Values.name }}"
   replicas: 1
   template:
     metadata:
       labels:
-        app: "{{ .Values.name }}"
+        app: nginx #"{{ .Values.name }}"
     spec:
       containers:
-      - name: "{{ .Values.name }}"
-        image: "{{ .Values.image }}":"{{ .Values.tag }}"
+      - name: nginx #"{{ .Values.name }}"
+        image: sinjebos/nginxexample:1.0 #"{{ .Values.image }}":"{{ .Values.tag }}"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ .Values.name }}"
+  name: nginx #"{{ .Values.name }}"
 spec:
   selector:
-    app: "{{ .Values.name }}"
+    app: nginx #"{{ .Values.name }}"
   ports:
-  - port: "{{ .Values.port }}"
+  - port: 80 #"{{ .Values.port }}"
     protocol: TCP
-    targetPort: "{{ .Values.targetPort }}"
+    targetPort: 8085 #"{{ .Values.targetPort }}"
